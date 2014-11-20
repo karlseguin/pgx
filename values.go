@@ -5,6 +5,7 @@ import (
 	"encoding/hex"
 	"fmt"
 	"math"
+	"reflect"
 	"strconv"
 	"strings"
 	"time"
@@ -989,7 +990,7 @@ func encodeText(w *WriteBuf, value interface{}) error {
 	switch t := value.(type) {
 	case string:
 		w.WriteInt32(int32(len(t)))
-		w.WriteBytes([]byte(t))
+		w.WriteBytes(str2bytes(&t))
 	case []byte:
 		w.WriteInt32(int32(len(t)))
 		w.WriteBytes(t)
@@ -998,6 +999,13 @@ func encodeText(w *WriteBuf, value interface{}) error {
 	}
 
 	return nil
+}
+
+func str2bytes(s *string) []byte {
+    sh := (*reflect.SliceHeader)(unsafe.Pointer(s))
+    sh.Len = len(*s)
+    sh.Cap = sh.Len
+    return *(*[]byte)(unsafe.Pointer(sh))
 }
 
 func decodeBytea(vr *ValueReader) []byte {

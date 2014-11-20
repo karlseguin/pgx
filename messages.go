@@ -109,7 +109,7 @@ func (wb *WriteBuf) WriteByte(b byte) {
 }
 
 func (wb *WriteBuf) WriteCString(s string) {
-	wb.buf = append(wb.buf, []byte(s)...)
+	wb.buf = append(wb.buf, str2bytes(&s)...)
 	wb.buf = append(wb.buf, 0)
 }
 
