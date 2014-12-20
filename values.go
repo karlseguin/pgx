@@ -1002,10 +1002,10 @@ func encodeText(w *WriteBuf, value interface{}) error {
 }
 
 func str2bytes(s *string) []byte {
-    sh := (*reflect.SliceHeader)(unsafe.Pointer(s))
-    sh.Len = len(*s)
-    sh.Cap = sh.Len
-    return *(*[]byte)(unsafe.Pointer(sh))
+	sh := (*reflect.SliceHeader)(unsafe.Pointer(s))
+	sh.Len = len(*s)
+	sh.Cap = sh.Len
+	return *(*[]byte)(unsafe.Pointer(sh))
 }
 
 func decodeBytea(vr *ValueReader) []byte {
