@@ -9,6 +9,7 @@ import (
 	"strconv"
 	"strings"
 	"time"
+	"unsafe"
 )
 
 // PostgreSQL oids for common types
