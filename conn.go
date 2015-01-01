@@ -37,7 +37,7 @@ type Conn struct {
 	conn               net.Conn      // the underlying TCP or unix domain socket connection
 	lastActivityTime   time.Time     // the last time the connection was used
 	reader             *bufio.Reader // buffered reader to improve read performance
-	wbuf               [1024]byte
+	wbuf               [65536]byte
 	Pid                int32             // backend pid
 	SecretKey          int32             // key to use to send a cancel query message to the server
 	RuntimeParams      map[string]string // parameters that have been reported by the server
